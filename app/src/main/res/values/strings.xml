@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">OpenWatherApiCompose</string>
+    <string name="title_idledynamicfeature">This module does nothing</string>
+</resources>
