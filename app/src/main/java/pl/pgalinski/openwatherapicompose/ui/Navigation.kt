@@ -1,5 +1,6 @@
 package pl.pgalinski.openwatherapicompose.ui
 
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -9,12 +10,15 @@ import androidx.navigation.navigation
 
 @Composable
 fun WeatherAppNavigation(
-    appState: WeatherAppState = rememberWeatherAooState()
+    appState: WeatherAppState = rememberWeatherAppState()
 ){
     NavHost(
         navController = appState.navHostController,
-        startDestination = "SplashScreen"
+        startDestination = "splashScreen"
     ){
+        composable("splashScreen"){
+            Text("SplashScreen")
+        }
         this.loginGraph(appState.navHostController)
         this.loggedInUserGraph(appState.navHostController)
     }
@@ -22,12 +26,12 @@ fun WeatherAppNavigation(
 }
 
 fun NavGraphBuilder.loggedInUserGraph(navController: NavController){
-    navigation(startDestination = "home", route = "home"){
+    navigation(startDestination = "home","loggedIn"){
         composable(route = "home"){
-
+            Text("Home")
         }
         composable(route = "details/{lat}&{lon}"){
-
+            Text("Details")
         }
 
     }
@@ -36,13 +40,13 @@ fun NavGraphBuilder.loggedInUserGraph(navController: NavController){
 fun NavGraphBuilder.loginGraph(navController: NavController){
     navigation(startDestination = "username", route="login" ){
         composable(route = "username"){
-
+            Text("Username")
         }
         composable(route = "password"){
-
+            Text("Password")
         }
         composable(route = "register"){
-
+            Text("Register")
         }
     }
 }
