@@ -2,11 +2,13 @@ package pl.pgalinski.openwatherapicompose.ui
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import pl.pgalinski.openwatherapicompose.ui.splashscreen.SplashScreen
 
 @Composable
 fun WeatherAppNavigation(
@@ -17,10 +19,12 @@ fun WeatherAppNavigation(
         startDestination = "splashScreen"
     ){
         composable("splashScreen"){
-            Text("SplashScreen")
+            SplashScreen(
+                navController = appState.navHostController
+            )
         }
-        this.loginGraph(appState.navHostController)
-        this.loggedInUserGraph(appState.navHostController)
+        loginGraph(appState.navHostController)
+        loggedInUserGraph(appState.navHostController)
     }
 
 }

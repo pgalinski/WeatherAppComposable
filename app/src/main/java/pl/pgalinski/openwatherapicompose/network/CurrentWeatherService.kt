@@ -1,20 +1,23 @@
 package pl.pgalinski.openwatherapicompose.network
 
 import pl.pgalinski.openwatherapicompose.model.curren.weather.CurrentWeather
+import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface CurrentWeatherService {
 
-    @GET("/weather?lat={lat}&lon={lon}&appid={apiKey}")
+    @GET("/weather")
     fun fetchCurrentWeather(
-        @Path("lat")
+        @Query("lat")
         lat: Float,
-        @Path("lon")
+        @Query("lon")
         lon: Float,
-        @Path("apiKey")
+        @Query("appid")
         apiKey: String
-    ):CurrentWeather
+    ): CurrentWeather
 
 }

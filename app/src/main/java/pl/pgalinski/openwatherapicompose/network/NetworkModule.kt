@@ -16,7 +16,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
 
-    val baseURL: String = "https://api.openweathermap.org/data/2.5"
+    val baseURL: String = "https://api.openweathermap.org/data/2.5/"
 
     @Singleton
     @Provides
@@ -42,7 +42,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun proviceCurrentWeatherService(retrofit: Retrofit): CurrentWeatherService =
+    fun provideCurrentWeatherService(retrofit: Retrofit): CurrentWeatherService =
         retrofit.create(CurrentWeatherService::class.java)
 
 }
