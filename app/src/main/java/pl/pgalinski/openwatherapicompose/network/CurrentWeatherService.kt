@@ -10,8 +10,8 @@ import retrofit2.http.Query
 
 interface CurrentWeatherService {
 
-    @GET("/weather")
-    fun fetchCurrentWeather(
+    @GET("data/2.5/weather")
+    suspend fun fetchCurrentWeather(
         @Query("lat")
         lat: Float,
         @Query("lon")

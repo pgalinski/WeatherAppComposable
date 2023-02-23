@@ -9,7 +9,7 @@ class CurrentWeatherRepository @Inject constructor(
 ) {
     val apiKey: String = "9b3bdc24d3b435f42660ef05b456a95b"
 
-    fun fetchCurrentWeather(lat: Float, lon: Float): CurrentWeather =
+    suspend fun fetchCurrentWeather(lat: Float, lon: Float): CurrentWeather =
         currentWeatherService.fetchCurrentWeather(
             lat,
             lon,

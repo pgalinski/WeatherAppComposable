@@ -53,8 +53,8 @@ data class Fall(
 
 @Parcelize
 data class Coord(
-    val lon: Long,
-    val lat: Long
+    val lon: Float,
+    val lat: Float
 ) : Parcelable
 
 @Parcelize
