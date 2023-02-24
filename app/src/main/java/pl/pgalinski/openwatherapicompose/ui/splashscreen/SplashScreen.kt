@@ -16,12 +16,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import kotlinx.coroutines.delay
 import pl.pgalinski.openwatherapicompose.R
+import pl.pgalinski.openwatherapicompose.ui.Screen
 
 @Composable
 fun SplashScreen(
     navController: NavController,
     viewModel: SplashScreenViewModel = hiltViewModel()
-){
+) {
 
     Box(
         Modifier
@@ -37,7 +38,7 @@ fun SplashScreen(
     ) {
         Text(text = viewModel.textToshow)
         Image(
-           painter = painterResource(
+            painter = painterResource(
                 id = R.drawable.partly_cloudy_day_48px
             ),
             contentDescription = "Splash screen logo",
@@ -50,10 +51,11 @@ fun SplashScreen(
         )
     }
 
-    LaunchedEffect(key1 = true){
+    LaunchedEffect(key1 = true) {
         delay(5000)
-        viewModel.textToshow = "This is from composable!"
-        viewModel.fetchCurrentWeather(54.372158f, 18.638306f)
+        navController.navigate(
+            route = Screen.Home.route
+        )
     }
 
 

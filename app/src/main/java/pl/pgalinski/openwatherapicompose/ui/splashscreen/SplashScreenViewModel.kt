@@ -11,21 +11,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import pl.pgalinski.openwatherapicompose.model.curren.weather.CurrentWeather
 import pl.pgalinski.openwatherapicompose.repository.CurrentWeatherRepository
+import java.lang.reflect.Constructor
 import javax.inject.Inject
 
 @HiltViewModel
-class SplashScreenViewModel @Inject constructor(
-    private val currentWeatherRepository: CurrentWeatherRepository
-) : ViewModel() {
+class SplashScreenViewModel @Inject constructor() : ViewModel() {
 
     var textToshow by mutableStateOf("This is from view model")
-
-    val currentWeather = MutableLiveData<CurrentWeather>()
-
-    fun fetchCurrentWeather(lat: Float, lon: Float) = viewModelScope.launch(Dispatchers.IO) {
-        currentWeather.postValue(
-            currentWeatherRepository.fetchCurrentWeather(lat, lon)
-        )
-    }
 
 }

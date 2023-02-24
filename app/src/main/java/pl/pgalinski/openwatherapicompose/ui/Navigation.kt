@@ -8,49 +8,39 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import pl.pgalinski.openwatherapicompose.ui.city.CityList
 import pl.pgalinski.openwatherapicompose.ui.splashscreen.SplashScreen
+
+private const val LOGGED_IN_ROUTE = "loggedIn"
 
 @Composable
 fun WeatherAppNavigation(
     appState: WeatherAppState = rememberWeatherAppState()
-){
+) {
     NavHost(
         navController = appState.navHostController,
-        startDestination = "splashScreen"
-    ){
-        composable("splashScreen"){
+        startDestination = Screen.SplashScreen.route
+    ) {
+        composable(Screen.SplashScreen.route) {
             SplashScreen(
                 navController = appState.navHostController
             )
         }
-        loginGraph(appState.navHostController)
         loggedInUserGraph(appState.navHostController)
     }
 
 }
 
-fun NavGraphBuilder.loggedInUserGraph(navController: NavController){
-    navigation(startDestination = "home","loggedIn"){
-        composable(route = "home"){
-            Text("Home")
+fun NavGraphBuilder.loggedInUserGraph(navController: NavController) {
+    navigation(startDestination = Screen.Home.route, LOGGED_IN_ROUTE) {
+        composable(route = Screen.Home.route) {
+            CityList(navController = navController)
         }
-        composable(route = "details/{lat}&{lon}"){
+        composable(route = Screen.CurrentWeatherDetails.route) {
             Text("Details")
         }
 
     }
 }
 
-fun NavGraphBuilder.loginGraph(navController: NavController){
-    navigation(startDestination = "username", route="login" ){
-        composable(route = "username"){
-            Text("Username")
-        }
-        composable(route = "password"){
-            Text("Password")
-        }
-        composable(route = "register"){
-            Text("Register")
-        }
-    }
-}
+
