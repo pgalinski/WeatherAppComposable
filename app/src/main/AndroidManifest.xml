@@ -15,7 +15,6 @@
         android:theme="@style/Theme.OpenWatherApiCompose"
         tools:targetApi="31">
 
-
         <activity
             android:name=".MainActivity"
             android:exported="true">

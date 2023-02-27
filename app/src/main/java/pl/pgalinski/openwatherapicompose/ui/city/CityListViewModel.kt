@@ -1,23 +1,20 @@
 package pl.pgalinski.openwatherapicompose.ui.city
 
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.lifecycle.MutableLiveData
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import pl.pgalinski.openwatherapicompose.model.curren.weather.CurrentWeather
 import pl.pgalinski.openwatherapicompose.repository.CityRepository
-import pl.pgalinski.openwatherapicompose.repository.CurrentWeatherRepository
+
 import javax.inject.Inject
 
 data class CityState(
+    val id: Long,
     val name: String,
-    val selected: Boolean = false
+    var selected: Boolean = false
 )
 
 @HiltViewModel
@@ -29,9 +26,13 @@ class CityListViewModel @Inject constructor(
 
     fun fetchCityList() {
         viewModelScope.launch(Dispatchers.IO) {
+            cities.clear()
             cities.addAll(
                 cityRepository.fetchCityList().map { city ->
-                    CityState(city.name)
+                    CityState(
+                        id = city.id,
+                        name = city.name
+                    )
                 })
         }
 

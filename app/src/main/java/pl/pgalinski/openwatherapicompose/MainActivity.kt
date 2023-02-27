@@ -3,7 +3,7 @@ package pl.pgalinski.openwatherapicompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.fragment.app.FragmentContainerView
+import com.example.compose.WeatherAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import pl.pgalinski.openwatherapicompose.ui.WeatherAppNavigation
 
@@ -12,8 +12,12 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent{
-            WeatherAppNavigation()
+        setContent {
+            WeatherAppTheme(
+                content = {
+                    WeatherAppNavigation()
+                }
+            )
         }
     }
 
