@@ -25,7 +25,7 @@ class CityListViewModel @Inject constructor(
     var cities = mutableStateListOf<CityState>()
 
     fun fetchCityList() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch{
             cities.clear()
             cities.addAll(
                 cityRepository.fetchCityList().map { city ->
@@ -35,7 +35,6 @@ class CityListViewModel @Inject constructor(
                     )
                 })
         }
-
     }
 
 }

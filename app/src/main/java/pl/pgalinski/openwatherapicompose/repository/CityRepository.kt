@@ -1,14 +1,20 @@
 package pl.pgalinski.openwatherapicompose.repository
 
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
+import pl.pgalinski.openwatherapicompose.DefaultDispatcher
+import pl.pgalinski.openwatherapicompose.IoDispatcher
 import pl.pgalinski.openwatherapicompose.model.city.City
 import javax.inject.Inject
 
-class CityRepository @Inject constructor() {
+class CityRepository @Inject constructor(
+    @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
+) {
 
     suspend fun fetchCityList(): List<City> {
-        return runBlocking {
+        return runBlocking(ioDispatcher) {
             delay(500)
             return@runBlocking listOf(
                 City(id = 1, name = "Gdańsk", lat = 54.372158f, long = 18.638306f),

@@ -15,12 +15,17 @@ class CurrentWeatherViewModel @Inject constructor(
     private val currentWeatherRepository: CurrentWeatherRepository
 ) : ViewModel() {
 
-    val currentWeather = MutableLiveData<CurrentWeather>()
+    private val currentWeather = MutableLiveData<CurrentWeather>()
 
-    fun fetchCurrentWeather(lat: Float, lon: Float) = viewModelScope.launch(Dispatchers.IO) {
-        currentWeather.postValue(
-            currentWeatherRepository.fetchCurrentWeather(lat, lon)
-        )
+    fun fetchCurrentWeather(lat: Float, lon: Float) = viewModelScope.launch{
+        val result = currentWeatherRepository.fetchCurrentWeather(lat, lon)
+
+        if(result.isSuccess){
+            currentWeather.postValue(
+                result.getOrNull()
+            )
+        }
+
     }
 
 }
