@@ -14,4 +14,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "OpenWatherApiCompose"
 include ':app'
-include ':IdleDynamicFeature'
